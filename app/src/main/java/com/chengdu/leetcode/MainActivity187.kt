@@ -3,7 +3,7 @@ package com.chengdu.leetcode
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity() {
+class MainActivity187 : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
