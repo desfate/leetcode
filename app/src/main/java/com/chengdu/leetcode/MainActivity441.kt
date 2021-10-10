@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlin.math.pow
 
-class MainActivity : AppCompatActivity() {
+class MainActivity441 : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
