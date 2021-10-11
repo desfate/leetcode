@@ -5,7 +5,7 @@ import android.os.Bundle
 import java.lang.StringBuilder
 import kotlin.math.pow
 
-class MainActivity : AppCompatActivity() {
+class MainActivity273 : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
