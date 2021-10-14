@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlin.text.StringBuilder
 
-class MainActivity : AppCompatActivity() {
+class MainActivity69 : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
