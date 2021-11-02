@@ -5,7 +5,7 @@ import android.os.Bundle
 import java.util.*
 import kotlin.math.absoluteValue
 
-class MainActivity : AppCompatActivity() {
+class MainActivity237 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
