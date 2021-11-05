@@ -6,7 +6,7 @@ import java.util.*
 import kotlin.math.absoluteValue
 import kotlin.math.max
 
-class MainActivity : AppCompatActivity() {
+class MainActivity1218 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
