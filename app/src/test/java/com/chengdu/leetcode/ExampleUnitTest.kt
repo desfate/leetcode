@@ -19,6 +19,7 @@ class ExampleUnitTest {
 
     @Test
     fun code6Test(){
-        println(Code06().intTo32(20))
+        println(Code06().intTo32(-1))
+        println(Code06().intToB(0))
     }
 }

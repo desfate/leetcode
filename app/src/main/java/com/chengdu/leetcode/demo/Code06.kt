@@ -10,6 +10,9 @@ package com.chengdu.leetcode.demo
  * 按位非 inv
  * 左移 shl
  * 右移 shr
+ * 无符号左移 ushl
+ * 无符号右移 ushr
+ *
  *
  * for example
  * 1 =  0000 0000 0001
@@ -27,6 +30,10 @@ class Code06 {
             }
         }
         return sum
+    }
+
+    fun intToB(number: Int): Int{
+        return number.inv() + 1
     }
 
 }
