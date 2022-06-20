@@ -66,4 +66,60 @@ class ExampleUnitTest {
         }
         return result
     }
+
+    @Test
+    fun Test2(){
+        var tagList = IntArray(6)
+        tagList[0] = 1
+        tagList[1] = 1
+        tagList[2] = 4
+        tagList[3] = 2
+        tagList[4] = 1
+        tagList[5] = 3
+        quickSork(tagList, 0, 5)
+        tagList
+    }
+
+
+    fun quickSork(tagList: IntArray, start: Int, end: Int){
+        if(start >= end){
+            return
+        }
+
+        // 如何寻找当前点的位置
+        // 双边指针
+        var pivot = PointSwap(tagList, start, end)
+        // 单边指针
+
+        quickSork(tagList, start, pivot - 1)
+        quickSork(tagList, pivot + 1, end)
+    }
+
+    fun PointSwap(tagList: IntArray, start: Int, end: Int): Int{
+        val pivot = tagList[start]
+        var leftPoint: Int = start
+        var rightPoint: Int = end
+        while (
+            leftPoint < rightPoint
+        ){
+            while ((leftPoint < rightPoint) && tagList[end] > pivot){
+                rightPoint --
+            }
+
+            while ((leftPoint < rightPoint) && tagList[start] < pivot){
+                leftPoint ++
+            }
+
+            if(leftPoint < rightPoint){
+                val temp = tagList[rightPoint]
+                tagList[rightPoint] = tagList[leftPoint]
+                tagList[leftPoint] = temp
+            }
+        }
+        // 最终将分界值与当前指针数据交换
+        tagList[start] = tagList[rightPoint];
+        tagList[rightPoint] = pivot;
+        // 返回分界值所在下标
+        return rightPoint;
+    }
 }
