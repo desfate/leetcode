@@ -2,6 +2,7 @@ package com.chengdu.leetcode
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import java.util.*
 import kotlin.math.absoluteValue
 
 /**
@@ -33,12 +34,14 @@ class MainActivity715 : AppCompatActivity() {
 
 //    class RangeModule() {
 //
+//        var treeMap = TreeMap<Int, Int>()
+//
 //        constructor(left: Int, right: Int) : this() {
 //
 //        }
 //
 //        fun addRange(left: Int, right: Int) {
-//
+//            treeMap[left] = right
 //        }
 //
 //        fun queryRange(left: Int, right: Int): Boolean {
