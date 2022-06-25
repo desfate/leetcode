@@ -4,6 +4,7 @@ import com.chengdu.leetcode.demo.Code06
 import org.junit.Test
 
 import org.junit.Assert.*
+import kotlin.math.min
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -122,4 +123,29 @@ class ExampleUnitTest {
         // 返回分界值所在下标
         return rightPoint;
     }
+
+
+
+    // 这种题目肯定是动态规划
+    // 先用暴力破解
+    @Test
+    fun testsss(){
+
+        val int1 = IntArray(3)
+        int1[0] = 17
+        int1[1] = 2
+        int1[2] = 17
+        val int2 = IntArray(3)
+        int2[0] = 16
+        int2[1] = 16
+        int2[2] = 5
+        val array = arrayOf<IntArray>(int1,int2)
+
+    }
+
+
+
+
+
+
 }
