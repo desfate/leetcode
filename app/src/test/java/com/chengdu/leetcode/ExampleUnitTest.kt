@@ -4,6 +4,8 @@ import com.chengdu.leetcode.demo.Code06
 import org.junit.Test
 
 import org.junit.Assert.*
+import kotlin.math.abs
+import kotlin.math.min
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -121,5 +123,56 @@ class ExampleUnitTest {
         tagList[rightPoint] = pivot;
         // 返回分界值所在下标
         return rightPoint;
+    }
+
+    @Test
+    fun mTest(){
+        println(isPrime(123344345))
+    }
+
+    fun isPrime(number: Int): Boolean{
+        if(number == 1) return false
+        var v = 2
+        while (v * v <= number){
+            if(number % v == 0){
+                return false
+            }
+            v += 1
+        }
+        return true
+    }
+
+    @Test
+    fun mTest2(){
+        var tagList = IntArray(4)
+        tagList[0] = 4
+        tagList[1] = 2
+        tagList[2] = 1
+        tagList[3] = 3
+        println(minimumAbsDifference(tagList))
+    }
+
+    // 提速
+    fun minimumAbsDifference(arr: IntArray): List<List<Int>> {
+        val result = arrayListOf<List<Int>>()
+        var min = Int.MAX_VALUE
+        val arrs = arr.sortedBy { it }
+        arrs.forEachIndexed { indexi, i ->
+            if(indexi == arrs.size - 1) return result.toList().sortedBy { it[0] }
+            val j = indexi + 1
+            val cur = arrs[j] - i
+            if (cur < min) {
+                result.clear()
+                result.add(
+                    listOf(i, arrs[j])
+                )
+                min = cur
+            }else if(cur == min){
+                result.add(
+                    listOf(i, arrs[j])
+                )
+            }
+        }
+        return result.toList().sortedBy { it[0] }
     }
 }
