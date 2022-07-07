@@ -20,13 +20,13 @@ class ExampleUnitTest {
 
 
     @Test
-    fun code6Test(){
+    fun code6Test() {
         println(Code06().intTo32(-1))
         println(Code06().intToB(0))
     }
 
     @Test
-    fun test(){
+    fun test() {
 //        println(findAndReplacePattern(arrayOf("abc","deq","mee","aqq","dkd","ccc"), "abb"))
         println(stringToRule("csccs"))
     }
@@ -38,29 +38,29 @@ class ExampleUnitTest {
         words.forEach {
             // 将每个字符串转化成对应的规则
             val rule = stringToRule(it)
-            if(hashMap.containsKey(rule)){
+            if (hashMap.containsKey(rule)) {
                 hashMap[rule]!!.add(it)
-            }else{
+            } else {
                 hashMap[rule] = arrayListOf(it)
             }
         }
-        return hashMap[stringToRule(pattern)] ?: listOf<String>() .toList()
+        return hashMap[stringToRule(pattern)] ?: listOf<String>().toList()
     }
 
-    private fun stringToRule(word: String): String{
+    private fun stringToRule(word: String): String {
         var start = 'a'
         val prvMap = hashMapOf<Char, Char>()
         var result = ""
 
         word.forEachIndexed { index, c ->
-            if (index == 0){
+            if (index == 0) {
                 result += start
                 prvMap[c] = start
-            }else{
-                if(prvMap.containsKey(c)){
+            } else {
+                if (prvMap.containsKey(c)) {
                     result += prvMap[c]
-                }else{
-                    start ++
+                } else {
+                    start++
                     result += start
                     prvMap[c] = start
                 }
@@ -70,7 +70,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun Test2(){
+    fun Test2() {
         var tagList = IntArray(6)
         tagList[0] = 1
         tagList[1] = 1
@@ -83,8 +83,8 @@ class ExampleUnitTest {
     }
 
 
-    fun quickSork(tagList: IntArray, start: Int, end: Int){
-        if(start >= end){
+    fun quickSork(tagList: IntArray, start: Int, end: Int) {
+        if (start >= end) {
             return
         }
 
@@ -97,22 +97,22 @@ class ExampleUnitTest {
         quickSork(tagList, pivot + 1, end)
     }
 
-    fun PointSwap(tagList: IntArray, start: Int, end: Int): Int{
+    fun PointSwap(tagList: IntArray, start: Int, end: Int): Int {
         val pivot = tagList[start]
         var leftPoint: Int = start
         var rightPoint: Int = end
         while (
             leftPoint < rightPoint
-        ){
-            while ((leftPoint < rightPoint) && tagList[end] > pivot){
-                rightPoint --
+        ) {
+            while ((leftPoint < rightPoint) && tagList[end] > pivot) {
+                rightPoint--
             }
 
-            while ((leftPoint < rightPoint) && tagList[start] < pivot){
-                leftPoint ++
+            while ((leftPoint < rightPoint) && tagList[start] < pivot) {
+                leftPoint++
             }
 
-            if(leftPoint < rightPoint){
+            if (leftPoint < rightPoint) {
                 val temp = tagList[rightPoint]
                 tagList[rightPoint] = tagList[leftPoint]
                 tagList[leftPoint] = temp
@@ -126,15 +126,15 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun mTest(){
+    fun mTest() {
         println(isPrime(123344345))
     }
 
-    fun isPrime(number: Int): Boolean{
-        if(number == 1) return false
+    fun isPrime(number: Int): Boolean {
+        if (number == 1) return false
         var v = 2
-        while (v * v <= number){
-            if(number % v == 0){
+        while (v * v <= number) {
+            if (number % v == 0) {
                 return false
             }
             v += 1
@@ -143,7 +143,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun mTest2(){
+    fun mTest2() {
         var tagList = IntArray(4)
         tagList[0] = 4
         tagList[1] = 2
@@ -158,7 +158,7 @@ class ExampleUnitTest {
         var min = Int.MAX_VALUE
         val arrs = arr.sortedBy { it }
         arrs.forEachIndexed { indexi, i ->
-            if(indexi == arrs.size - 1) return result.toList().sortedBy { it[0] }
+            if (indexi == arrs.size - 1) return result.toList().sortedBy { it[0] }
             val j = indexi + 1
             val cur = arrs[j] - i
             if (cur < min) {
@@ -167,12 +167,38 @@ class ExampleUnitTest {
                     listOf(i, arrs[j])
                 )
                 min = cur
-            }else if(cur == min){
+            } else if (cur == min) {
                 result.add(
                     listOf(i, arrs[j])
                 )
             }
         }
         return result.toList().sortedBy { it[0] }
+    }
+
+    @Test
+    fun mTest3() {
+        var dictionary = listOf("cat", "bat", "rat")
+        replaceWords(dictionary, "the cattle was rattled by the battery")
+    }
+
+    fun replaceWords(dictionary: List<String>, sentence: String): String {
+        val result = sentence.split(" ").toMutableList();
+        if (sentence.isEmpty()) return ""
+        result.forEachIndexed { i, it ->
+            dictionary.forEach { dic ->
+                if (it.startsWith(dic)) {
+                    if (result[i].length > dic.length) {
+                        result[i] = dic
+                    }
+                }
+            }
+        }
+        val sb = StringBuffer()
+        result.forEach {
+            sb.append(" ")
+            sb.append(it)
+        }
+        return sb.toString().substring(1, sb.toString().length)
     }
 }
