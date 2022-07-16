@@ -201,4 +201,24 @@ class ExampleUnitTest {
         }
         return sb.toString().substring(1, sb.toString().length)
     }
+
+    @Test
+    fun mTest4() {
+        minIndex("kxeinco", "kxeinco", "kxeinco")
+    }
+
+    fun minIndex(pref: String, suff: String, value: String): Boolean {
+        if (value.isNotEmpty()) {
+            val start = value.indexOf(pref, 0, false)
+            if (start == -1) return false
+            val end = value.indexOf(suff, value.length - 1 - suff.length, false)
+            if (end == -1) return false
+            if (start < end) {
+                return true
+            } else if (start == end && pref == value) {
+                return true
+            }
+        }
+        return false
+    }
 }
