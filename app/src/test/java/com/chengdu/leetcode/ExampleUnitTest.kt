@@ -4,6 +4,8 @@ import com.chengdu.leetcode.demo.Code06
 import org.junit.Test
 
 import org.junit.Assert.*
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.abs
 import kotlin.math.min
 
@@ -220,5 +222,56 @@ class ExampleUnitTest {
             }
         }
         return false
+    }
+
+    @Test
+    fun mTest5(){
+        var tagList0 = IntArray(4)
+        tagList0[0] = 1
+        tagList0[1] = 0
+        tagList0[2] = 0
+        tagList0[3] = 0
+        var tagList1 = IntArray(4)
+        tagList1[0] = 0
+        tagList1[1] = 0
+        tagList1[2] = 0
+        tagList1[3] = 0
+        var tagList2 = IntArray(4)
+        tagList2[0] = 0
+        tagList2[1] = 0
+        tagList2[2] = 0
+        tagList2[3] = 0
+        var tagList3 = IntArray(4)
+        tagList3[0] = 0
+        tagList3[1] = 0
+        tagList3[2] = 0
+        tagList3[3] = 0
+        val list = arrayOf<IntArray>(
+            tagList0, tagList1,tagList2,tagList3
+        )
+        containVirus(list)
+    }
+
+    fun containVirus(isInfected: Array<IntArray>){
+        isInfected.forEachIndexed { indexI, i ->
+            isInfected[indexI].forEachIndexed { indexJ, j ->
+                if(isInfected[indexI][indexJ] == 1){  // 我是病毒 尝试向四周扩散
+                    // 判断上下左右扩散的可行性
+                    if(indexI - 1 >= 0 && isInfected[indexI - 1][indexJ] == 0){
+                        isInfected[indexI - 1][indexJ] = -1  // 向上扩散
+                    }
+                    if(indexI + 1 <= isInfected.size - 1 && isInfected[indexI + 1][indexJ] == 0){
+                        isInfected[indexI + 1][indexJ] = -1  // 向下扩散
+                    }
+                    if(indexJ + 1 <= isInfected[indexI].size - 1 && isInfected[indexI][indexJ + 1] == 0){
+                        isInfected[indexI][indexJ + 1] = -1  // 向右扩散
+                    }
+                    if(indexJ - 1 >= 0 && isInfected[indexI][indexJ - 1] == 0){
+                        isInfected[indexI][indexJ - 1] = -1  // 向左扩散
+                    }
+                }
+            }
+        }
+        print(isInfected.contentDeepToString())
     }
 }
