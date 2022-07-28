@@ -274,4 +274,57 @@ class ExampleUnitTest {
         }
         print(isInfected.contentDeepToString())
     }
+
+
+    @Test
+    fun mTest6(){
+        var tagList0 = IntArray(4)
+        tagList0[0] = 1
+        tagList0[1] = 2
+        tagList0[2] = 3
+        tagList0[3] = 4
+        distanceBetweenBusStops(tagList0, 0 , 3)
+    }
+
+    fun distanceBetweenBusStops(distance: IntArray, start: Int, destination: Int): Int {
+        var right = start
+        var left = destination
+        if(right > left){
+            right = left.apply { left = right }
+        }
+
+        var rightSum = 0
+        var leftSum = 0
+        for (index in distance.indices){
+            if(index in right until left){
+                rightSum += distance[index]
+            }else{
+                leftSum += distance[index]
+            }
+        }
+        return min(rightSum, leftSum)
+    }
+
+    @Test
+    fun mTest7(){
+        //[37,12,28,9,100,56,80,5,12]
+        var tagList0 = IntArray(9)
+        tagList0[0] = 37
+        tagList0[1] = 12
+        tagList0[2] = 28
+        tagList0[3] = 9
+        tagList0[4] = 100
+        tagList0[5] = 56
+        tagList0[6] = 80
+        tagList0[7] = 5
+        tagList0[8] = 12
+        arrayRankTransform(tagList0)
+    }
+
+    fun arrayRankTransform(arr: IntArray): IntArray {
+        val sortedList = arr.sortedArray()
+        return arr.map {
+            sortedList.indexOf(it) + 1
+        }.toIntArray()
+    }
 }
