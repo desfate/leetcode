@@ -225,7 +225,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun mTest5(){
+    fun mTest5() {
         var tagList0 = IntArray(4)
         tagList0[0] = 1
         tagList0[1] = 0
@@ -247,26 +247,26 @@ class ExampleUnitTest {
         tagList3[2] = 0
         tagList3[3] = 0
         val list = arrayOf<IntArray>(
-            tagList0, tagList1,tagList2,tagList3
+            tagList0, tagList1, tagList2, tagList3
         )
         containVirus(list)
     }
 
-    fun containVirus(isInfected: Array<IntArray>){
+    fun containVirus(isInfected: Array<IntArray>) {
         isInfected.forEachIndexed { indexI, i ->
             isInfected[indexI].forEachIndexed { indexJ, j ->
-                if(isInfected[indexI][indexJ] == 1){  // 我是病毒 尝试向四周扩散
+                if (isInfected[indexI][indexJ] == 1) {  // 我是病毒 尝试向四周扩散
                     // 判断上下左右扩散的可行性
-                    if(indexI - 1 >= 0 && isInfected[indexI - 1][indexJ] == 0){
+                    if (indexI - 1 >= 0 && isInfected[indexI - 1][indexJ] == 0) {
                         isInfected[indexI - 1][indexJ] = -1  // 向上扩散
                     }
-                    if(indexI + 1 <= isInfected.size - 1 && isInfected[indexI + 1][indexJ] == 0){
+                    if (indexI + 1 <= isInfected.size - 1 && isInfected[indexI + 1][indexJ] == 0) {
                         isInfected[indexI + 1][indexJ] = -1  // 向下扩散
                     }
-                    if(indexJ + 1 <= isInfected[indexI].size - 1 && isInfected[indexI][indexJ + 1] == 0){
+                    if (indexJ + 1 <= isInfected[indexI].size - 1 && isInfected[indexI][indexJ + 1] == 0) {
                         isInfected[indexI][indexJ + 1] = -1  // 向右扩散
                     }
-                    if(indexJ - 1 >= 0 && isInfected[indexI][indexJ - 1] == 0){
+                    if (indexJ - 1 >= 0 && isInfected[indexI][indexJ - 1] == 0) {
                         isInfected[indexI][indexJ - 1] = -1  // 向左扩散
                     }
                 }
@@ -277,28 +277,28 @@ class ExampleUnitTest {
 
 
     @Test
-    fun mTest6(){
+    fun mTest6() {
         var tagList0 = IntArray(4)
         tagList0[0] = 1
         tagList0[1] = 2
         tagList0[2] = 3
         tagList0[3] = 4
-        distanceBetweenBusStops(tagList0, 0 , 3)
+        distanceBetweenBusStops(tagList0, 0, 3)
     }
 
     fun distanceBetweenBusStops(distance: IntArray, start: Int, destination: Int): Int {
         var right = start
         var left = destination
-        if(right > left){
+        if (right > left) {
             right = left.apply { left = right }
         }
 
         var rightSum = 0
         var leftSum = 0
-        for (index in distance.indices){
-            if(index in right until left){
+        for (index in distance.indices) {
+            if (index in right until left) {
                 rightSum += distance[index]
-            }else{
+            } else {
                 leftSum += distance[index]
             }
         }
@@ -306,7 +306,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun mTest7(){
+    fun mTest7() {
         //[37,12,28,9,100,56,80,5,12]
         var tagList0 = IntArray(9)
         tagList0[0] = 37
@@ -326,5 +326,40 @@ class ExampleUnitTest {
         return arr.map {
             sortedList.indexOf(it) + 1
         }.toIntArray()
+    }
+
+    @Test
+    fun mTest8() {
+        var tagList0 = IntArray(2)
+        tagList0[0] = 0
+        tagList0[1] = 0
+        var tagList1 = IntArray(2)
+        tagList1[0] = 1
+        tagList1[1] = 1
+        var tagList2 = IntArray(2)
+        tagList2[0] = 1
+        tagList2[1] = 0
+        var tagList3 = IntArray(2)
+        tagList3[0] = 0
+        tagList3[1] = 1
+        validSquare(tagList0, tagList1, tagList2, tagList3)
+    }
+
+    fun validSquare(p1: IntArray, p2: IntArray, p3: IntArray, p4: IntArray): Boolean {
+        // 四个点  3 3 之间 积为 -1
+        return getX(p1, p3, p2) && getX(p3, p2, p4) && getX(p2, p4, p1) && getX(p4, p1, p3)
+    }
+
+    fun getX(p1: IntArray, p2: IntArray, p3: IntArray): Boolean {
+        // k p1 p2 和 k p1 p3 的乘积为 -1
+        if(p1[0] - p2[0] == 0){
+            return p2[1] - p3[1] == 0
+        }
+        if(p2[0] - p3[0] == 0){
+            return p1[1] - p2[1] == 0
+        }
+        val k1 = (p1[1] - p2[1]) / (p1[0] - p2[0])
+        val k2 = (p2[1] - p3[1]) / (p2[0] - p3[0])
+        return k1 * k2 == -1
     }
 }
