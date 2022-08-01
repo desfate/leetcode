@@ -362,4 +362,42 @@ class ExampleUnitTest {
         val k2 = (p2[1] - p3[1]) / (p2[0] - p3[0])
         return k1 * k2 == -1
     }
+
+
+    @Test
+    fun mTest9() {
+        var tagList0 = IntArray(4)
+        tagList0[0] = 1
+        tagList0[1] = 1
+        tagList0[2] = 1
+        tagList0[3] = 1
+        jump(tagList0)
+    }
+
+    var min = Int.MAX_VALUE
+
+    fun jump(nums: IntArray): Int {
+
+        if(nums.size == 1) return 0
+        // 将数组转换成 start end 模式
+        var arrays = nums.mapIndexed { index, i ->
+            index + i
+        }
+
+        findNext(arrays.toIntArray(), 0)
+        return min - 1
+    }
+
+    fun findNext(nums: IntArray, result: Int){
+        // 递归寻找符合跳跃条件的数组
+        nums.forEachIndexed { index, i ->
+            if(i >= nums.size){
+                if(index == 0) {
+                    min = if(min < result + 1){min}else{result + 1}
+                    return
+                }
+                findNext(nums.take(index).toIntArray(), result + 1)
+            }
+        }
+    }
 }
