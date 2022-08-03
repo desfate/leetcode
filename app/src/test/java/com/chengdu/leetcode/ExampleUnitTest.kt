@@ -366,11 +366,12 @@ class ExampleUnitTest {
 
     @Test
     fun mTest9() {
-        var tagList0 = IntArray(4)
-        tagList0[0] = 1
-        tagList0[1] = 1
+        var tagList0 = IntArray(5)
+        tagList0[0] = 2
+        tagList0[1] = 3
         tagList0[2] = 1
         tagList0[3] = 1
+        tagList0[4] = 4
         jump(tagList0)
     }
 
@@ -378,23 +379,26 @@ class ExampleUnitTest {
 
     fun jump(nums: IntArray): Int {
 
-        if(nums.size == 1) return 0
+        if (nums.size == 1) return 0
         // 将数组转换成 start end 模式
         var arrays = nums.mapIndexed { index, i ->
             index + i
         }
 
         findNext(arrays.toIntArray(), 0)
-        return min - 1
+        return min
     }
 
-    fun findNext(nums: IntArray, result: Int){
+    fun findNext(nums: IntArray, result: Int) {
         // 递归寻找符合跳跃条件的数组
         nums.forEachIndexed { index, i ->
-            if(i >= nums.size){
-                if(index == 0) {
-                    min = if(min < result + 1){min}else{result + 1}
-                    return
+            if (i >= nums.size - 1) {
+                if (index == 0) {
+                    min = if (min < result + 1) {
+                        min
+                    } else {
+                        result + 1
+                    }
                 }
                 findNext(nums.take(index).toIntArray(), result + 1)
             }
@@ -464,5 +468,60 @@ class ExampleUnitTest {
             return curSize == maxSize
         }
 
+    }
+
+
+    @Test
+    fun Test11(){
+        orderlyQueue("hmg", 2)
+    }
+
+
+    fun orderlyQueue(s: String, k: Int): String {
+        // 题目可以转换为  从前n个字符中 找到比n+1更小的  并移动到最后
+        // 1.循环处理上述逻辑
+        // 2.如何设计数据结构 更容易操作 （链表）
+        var arr = s.toCharArray()
+        arr.sort()
+        if (s.length == k) return arr.toList().joinToString("")
+
+        val link = LinkedList<Char>()
+        s.forEach {
+            link.add(it)
+        }
+        var isFinish = false
+        // 对链表处理上述逻辑
+        if (k < s.length) {
+            while (!isFinish) {
+                // 从前k个里面中找到最大的
+                var max = link.first()
+                var min = s.last()
+                var maxIndex = 0
+                link.forEachIndexed { index, c ->
+                    if (index < k) {
+                        max = if (max >= c) {
+                            max
+                        } else {
+                            maxIndex = index
+                            c
+                        }
+                    }else{
+                        min = if ( min <= c){
+                            min
+                        } else {
+                            c
+                        }
+                    }
+                }
+                if (max > min) {
+                    link.addLast(max)
+                    link.removeAt(maxIndex)
+                } else {
+                    isFinish = true
+                }
+            }
+            return link.toList().joinToString("")
+        }
+        return s
     }
 }

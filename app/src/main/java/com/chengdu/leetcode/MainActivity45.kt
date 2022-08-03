@@ -16,7 +16,7 @@ class MainActivity45 : AppCompatActivity() {
 
     fun jump(nums: IntArray): Int {
 
-        if(nums.size == 1) return nums[0]
+        if (nums.size == 1) return 0
         // 将数组转换成 start end 模式
         var arrays = nums.mapIndexed { index, i ->
             index + i
@@ -26,12 +26,16 @@ class MainActivity45 : AppCompatActivity() {
         return min
     }
 
-    fun findNext(nums: IntArray, result: Int){
+    fun findNext(nums: IntArray, result: Int) {
         // 递归寻找符合跳跃条件的数组
         nums.forEachIndexed { index, i ->
-            if(i >= nums.size - 1){
-                if(index == 0) {
-                    min = if(min < result + 1){min}else{result + 1}
+            if (i >= nums.size - 1) {
+                if (index == 0) {
+                    min = if (min < result + 1) {
+                        min
+                    } else {
+                        result + 1
+                    }
                 }
                 findNext(nums.take(index).toIntArray(), result + 1)
             }
