@@ -352,10 +352,10 @@ class ExampleUnitTest {
 
     fun getX(p1: IntArray, p2: IntArray, p3: IntArray): Boolean {
         // k p1 p2 和 k p1 p3 的乘积为 -1
-        if(p1[0] - p2[0] == 0){
+        if (p1[0] - p2[0] == 0) {
             return p2[1] - p3[1] == 0
         }
-        if(p2[0] - p3[0] == 0){
+        if (p2[0] - p3[0] == 0) {
             return p1[1] - p2[1] == 0
         }
         val k1 = (p1[1] - p2[1]) / (p1[0] - p2[0])
@@ -406,7 +406,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun Test10(){
+    fun Test10() {
         val queue = MyCircularQueue(3)
         queue.enQueue(2)
         queue.enQueue(3)
@@ -425,38 +425,38 @@ class ExampleUnitTest {
         var last: ListNode? = null
 
         fun enQueue(value: Int): Boolean {
-            if(curSize == 0){
+            if (curSize == 0) {
                 root = ListNode(value)
                 last = root
                 curSize = 1
-            }else if(curSize < maxSize){
+            } else if (curSize < maxSize) {
                 last!!.next = ListNode(value)
                 last = last!!.next
-                curSize ++
-            }else{
+                curSize++
+            } else {
                 return false
             }
             return true
         }
 
         fun deQueue(): Boolean {
-            return if(root != null){
-                root = if(root!!.next != null) root!!.next
+            return if (root != null) {
+                root = if (root!!.next != null) root!!.next
                 else null
-                curSize --
+                curSize--
                 true
-            }else{
+            } else {
                 false
             }
         }
 
         fun Front(): Int {
-            return if(curSize == 0) -1
+            return if (curSize == 0) -1
             else root!!.`val`
         }
 
         fun Rear(): Int {
-            return if(curSize == 0) -1
+            return if (curSize == 0) -1
             else last!!.`val`
         }
 
@@ -472,7 +472,8 @@ class ExampleUnitTest {
 
 
     @Test
-    fun Test11(){
+    fun Test11() {
+
         orderlyQueue("hmg", 2)
     }
 
@@ -505,8 +506,8 @@ class ExampleUnitTest {
                             maxIndex = index
                             c
                         }
-                    }else{
-                        min = if ( min <= c){
+                    } else {
+                        min = if (min <= c) {
                             min
                         } else {
                             c
@@ -523,5 +524,38 @@ class ExampleUnitTest {
             return link.toList().joinToString("")
         }
         return s
+    }
+
+
+    @Test
+    fun Test12() {
+        var tagList0 = IntArray(5)
+        tagList0[0] = 4
+        tagList0[1] = 4
+        tagList0[2] = 7
+        tagList0[3] = 6
+        tagList0[4] = 7
+        minSubsequence(tagList0)
+    }
+
+
+    fun minSubsequence(nums: IntArray): List<Int> {
+        if (nums.size == 1) return nums.toList()
+        // 先排序  排序之后  双指针 计算
+        val list = nums.sortedArray()
+        var start = 0
+        var end = nums.size - 1
+        var sumStart = list[0]
+        var sumEnd = list[end]
+        while (start != end) {
+            if (sumStart >= sumEnd) {
+                end--
+                sumEnd += list[end]
+            } else {
+                start++
+                sumStart += list[start]
+            }
+        }
+        return list.takeLast(nums.size - end).reversed()
     }
 }
