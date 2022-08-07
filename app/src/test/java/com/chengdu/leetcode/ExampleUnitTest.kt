@@ -1,5 +1,6 @@
 package com.chengdu.leetcode
 
+import com.chengdu.leetcode.algorithm.TreeNode
 import com.chengdu.leetcode.demo.Code06
 import org.junit.Test
 
@@ -346,18 +347,26 @@ class ExampleUnitTest {
     }
 
     fun validSquare(p1: IntArray, p2: IntArray, p3: IntArray, p4: IntArray): Boolean {
+        // 找到一个正确的循环
+        // 最大的y  最小的x  最小的y  最大的x
+
+
+
+
         // 四个点  3 3 之间 积为 -1
         return getX(p1, p3, p2) && getX(p3, p2, p4) && getX(p2, p4, p1) && getX(p4, p1, p3)
     }
 
+
     fun getX(p1: IntArray, p2: IntArray, p3: IntArray): Boolean {
         // k p1 p2 和 k p1 p3 的乘积为 -1
         if (p1[0] - p2[0] == 0) {
-            return p2[1] - p3[1] == 0
+            return p2[0] - p3[0] != 0 && p2[1] - p3[1] == 0
         }
         if (p2[0] - p3[0] == 0) {
-            return p1[1] - p2[1] == 0
+            return p1[0] - p2[0] != 0 && p1[1] - p2[1] == 0
         }
+
         val k1 = (p1[1] - p2[1]) / (p1[0] - p2[0])
         val k2 = (p2[1] - p3[1]) / (p2[0] - p3[0])
         return k1 * k2 == -1
@@ -557,5 +566,52 @@ class ExampleUnitTest {
             }
         }
         return list.takeLast(nums.size - end).reversed()
+    }
+
+
+    @Test
+    fun mTest9() {
+        val root = TreeNode(1)
+
+        root.left = TreeNode(1)
+        root.right = TreeNode(0)
+        root.right!!.right = TreeNode(9)
+        root.right!!.left = TreeNode(-7)
+        root.left!!.left = TreeNode(7)
+        root.left!!.right = TreeNode(-8)
+
+        maxLevelSum(root)
+    }
+
+
+    val hashMap = hashMapOf<Int, Int>()
+
+    fun maxLevelSum(root: TreeNode?): Int {
+        // 直接遍历  然后将每层的信息统计到hashmap中  key是层数  value是每层节点之和
+        dfs(root, 1)
+        var max = Int.MIN_VALUE
+        hashMap.forEach { (_, u) ->
+            if (u > max) max = u
+        }
+
+        hashMap.forEach { (i, u) ->
+            if(u == max){
+                return i
+            }
+        }
+
+        return 0
+    }
+    // 问题一  带层数的遍历
+
+    // 前序遍历  根左右  递归  （需要记录层数）
+    fun dfs(root: TreeNode?, layer: Int) {
+        if (root == null) {
+            return
+        }
+        val value = hashMap.getOrDefault(layer, 0)
+        hashMap[layer] = root.`val` + value
+        dfs(root.left, layer + 1)
+        dfs(root.right, layer + 1)
     }
 }
