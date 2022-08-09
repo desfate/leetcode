@@ -19,8 +19,14 @@ class MainActivity593 : AppCompatActivity() {
 
     fun getX(p1: IntArray, p2: IntArray, p3: IntArray): Boolean {
         // k p1 p2 和 k p1 p3 的乘积为 -1
-        val k1 = (p2[1] - p1[1]) / (p2[0] - p1[0])
-        val k2 = (p3[1] - p1[1]) / (p3[0] - p1[0])
+        if(p1[0] - p2[0] == 0){
+            return p2[1] - p3[1] == 0 && p2[0] - p3[0] != 0
+        }
+        if(p2[0] - p3[0] == 0){
+            return p1[1] - p2[1] == 0 && p1[0] - p2[0] != 0
+        }
+        val k1 = (p1[1] - p2[1]) / (p1[0] - p2[0])
+        val k2 = (p2[1] - p3[1]) / (p2[0] - p3[0])
         return k1 * k2 == -1
     }
 
