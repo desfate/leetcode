@@ -8,6 +8,7 @@ import org.junit.Assert.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
+import kotlin.math.max
 import kotlin.math.min
 
 /**
@@ -568,50 +569,105 @@ class ExampleUnitTest {
         return list.takeLast(nums.size - end).reversed()
     }
 
+//
+//    @Test
+//    fun mTest9() {
+//        val root = TreeNode(1)
+//
+//        root.left = TreeNode(1)
+//        root.right = TreeNode(0)
+//        root.right!!.right = TreeNode(9)
+//        root.right!!.left = TreeNode(-7)
+//        root.left!!.left = TreeNode(7)
+//        root.left!!.right = TreeNode(-8)
+//
+//        maxLevelSum(root)
+//    }
+//
+//
+//    val hashMap = hashMapOf<Int, Int>()
+//
+//    fun maxLevelSum(root: TreeNode?): Int {
+//        // 直接遍历  然后将每层的信息统计到hashmap中  key是层数  value是每层节点之和
+//        dfs(root, 1)
+//        var max = Int.MIN_VALUE
+//        hashMap.forEach { (_, u) ->
+//            if (u > max) max = u
+//        }
+//
+//        hashMap.forEach { (i, u) ->
+//            if(u == max){
+//                return i
+//            }
+//        }
+//
+//        return 0
+//    }
+//    // 问题一  带层数的遍历
+//
+//    // 前序遍历  根左右  递归  （需要记录层数）
+//    fun dfs(root: TreeNode?, layer: Int) {
+//        if (root == null) {
+//            return
+//        }
+//        val value = hashMap.getOrDefault(layer, 0)
+//        hashMap[layer] = root.`val` + value
+//        dfs(root.left, layer + 1)
+//        dfs(root.right, layer + 1)
+//    }
 
+    /**
+     * [1,1,1,2,2,2,3,3,3,4,4,4,5]
+     * [10,2,8,9,3,8,1,5,2,3,7,6]
+     */
     @Test
-    fun mTest9() {
-        val root = TreeNode(1)
+    fun test10086(){
 
-        root.left = TreeNode(1)
-        root.right = TreeNode(0)
-        root.right!!.right = TreeNode(9)
-        root.right!!.left = TreeNode(-7)
-        root.left!!.left = TreeNode(7)
-        root.left!!.right = TreeNode(-8)
-
-        maxLevelSum(root)
+        val array1 = IntArray(18)
+        array1[0] = 10
+        array1[1] = 2
+        array1[2] = 8
+        array1[3] = 9
+        array1[4] = 3
+        array1[5] = 8
+        array1[6] = 1
+        array1[7] = 5
+        array1[8] = 2
+        array1[9] = 3
+        array1[10] = 7
+        array1[11] = 6
+        maxEqualFreq(array1);
     }
 
-
+    var max = 0
     val hashMap = hashMapOf<Int, Int>()
-
-    fun maxLevelSum(root: TreeNode?): Int {
-        // 直接遍历  然后将每层的信息统计到hashmap中  key是层数  value是每层节点之和
-        dfs(root, 1)
-        var max = Int.MIN_VALUE
-        hashMap.forEach { (_, u) ->
-            if (u > max) max = u
-        }
-
-        hashMap.forEach { (i, u) ->
-            if(u == max){
-                return i
+    fun maxEqualFreq(nums: IntArray): Int {
+        nums.forEachIndexed { index, i ->
+            val value = hashMap.getOrDefault(i, 0)
+            hashMap[i] = value + 1
+            if(isFreq()){
+                max = max(max, index + 1)
             }
         }
-
-        return 0
+        return max
     }
-    // 问题一  带层数的遍历
 
-    // 前序遍历  根左右  递归  （需要记录层数）
-    fun dfs(root: TreeNode?, layer: Int) {
-        if (root == null) {
-            return
+    // 判断通过hashmap值合并后是否只有两个值  且两个值的差值 只有1
+    fun isFreq(): Boolean {
+        val set = hashMap.map {
+            it.value
+        }.toSet()
+        var first = -1
+        if (set.size == 2) {
+            set.toList().sorted().forEach {
+                if (first == -1) {
+                    first = it
+                } else {
+                    if(first == 1 || it == 1) return true
+                    return kotlin.math.abs(first - it) == 1
+                }
+            }
         }
-        val value = hashMap.getOrDefault(layer, 0)
-        hashMap[layer] = root.`val` + value
-        dfs(root.left, layer + 1)
-        dfs(root.right, layer + 1)
+        return false
     }
 }
