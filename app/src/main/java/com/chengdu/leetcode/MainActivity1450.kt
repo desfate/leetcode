@@ -18,7 +18,7 @@ class MainActivity1450 : AppCompatActivity() {
 
     fun busyStudent(startTime: IntArray, endTime: IntArray, queryTime: Int): Int {
         var num = 0
-        endTime.forEachIndexed { index, i ->
+        endTime.forEachIndexed { index, i -> 
             if(i >= queryTime && startTime[index] <= queryTime){
                 num ++
             }
