@@ -1,6 +1,7 @@
 package com.chengdu.leetcode
 
 import com.chengdu.leetcode.algorithm.TreeNode
+import com.chengdu.leetcode.algorithm.sorts.SelectSorts
 import com.chengdu.leetcode.demo.Code06
 import org.junit.Test
 
@@ -669,5 +670,10 @@ class ExampleUnitTest {
             }
         }
         return false
+    }
+
+    @Test
+    fun testSortSelected(){
+        SelectSorts().test()
     }
 }
