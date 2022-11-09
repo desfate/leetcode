@@ -1,6 +1,7 @@
 package com.chengdu.leetcode
 
 import com.chengdu.leetcode.algorithm.TreeNode
+import com.chengdu.leetcode.algorithm.sorts.BubbleSorts
 import com.chengdu.leetcode.algorithm.sorts.SelectSorts
 import com.chengdu.leetcode.demo.Code06
 import org.junit.Test
@@ -675,5 +676,10 @@ class ExampleUnitTest {
     @Test
     fun testSortSelected(){
         SelectSorts().test()
+    }
+
+    @Test
+    fun testSortBubble(){
+        BubbleSorts().test()
     }
 }
