@@ -1,8 +1,8 @@
-package com.chengdu.leetcode
+package com.chengdu.leetcode.classify.backtracking
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlin.text.StringBuilder
+import com.chengdu.leetcode.R
 
 class MainActivity46 : AppCompatActivity() {
 

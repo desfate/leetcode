@@ -1,10 +1,8 @@
-package com.chengdu.leetcode
+package com.chengdu.leetcode.classify
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import java.util.*
-import kotlin.math.absoluteValue
-import kotlin.math.max
+import com.chengdu.leetcode.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

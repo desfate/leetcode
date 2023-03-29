@@ -1,8 +1,8 @@
-package com.chengdu.leetcode
+package com.chengdu.leetcode.classify.greedy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlin.text.StringBuilder
+import com.chengdu.leetcode.R
 
 class MainActivity45 : AppCompatActivity() {
 

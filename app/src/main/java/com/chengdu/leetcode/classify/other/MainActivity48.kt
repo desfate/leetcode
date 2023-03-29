@@ -1,8 +1,9 @@
-package com.chengdu.leetcode
+package com.chengdu.leetcode.classify.other
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlin.text.StringBuilder
+import com.chengdu.leetcode.R
+
 // https://leetcode.cn/problems/rotate-image/
 class MainActivity48 : AppCompatActivity() {
 

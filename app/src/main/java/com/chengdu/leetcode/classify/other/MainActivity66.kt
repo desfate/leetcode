@@ -1,7 +1,8 @@
-package com.chengdu.leetcode
+package com.chengdu.leetcode.classify.other
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.chengdu.leetcode.R
 
 class MainActivity66 : AppCompatActivity() {
 

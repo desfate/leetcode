@@ -355,8 +355,6 @@ class ExampleUnitTest {
         // 最大的y  最小的x  最小的y  最大的x
 
 
-
-
         // 四个点  3 3 之间 积为 -1
         return getX(p1, p3, p2) && getX(p3, p2, p4) && getX(p2, p4, p1) && getX(p4, p1, p3)
     }
@@ -624,7 +622,7 @@ class ExampleUnitTest {
      * [10,2,8,9,3,8,1,5,2,3,7,6]
      */
     @Test
-    fun test10086(){
+    fun test10086() {
 
         val array1 = IntArray(18)
         array1[0] = 10
@@ -648,7 +646,7 @@ class ExampleUnitTest {
         nums.forEachIndexed { index, i ->
             val value = hashMap.getOrDefault(i, 0)
             hashMap[i] = value + 1
-            if(isFreq()){
+            if (isFreq()) {
                 max = max(max, index + 1)
             }
         }
@@ -666,7 +664,7 @@ class ExampleUnitTest {
                 if (first == -1) {
                     first = it
                 } else {
-                    if(first == 1 || it == 1) return true
+                    if (first == 1 || it == 1) return true
                     return kotlin.math.abs(first - it) == 1
                 }
             }
@@ -675,17 +673,40 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun testSortSelected(){
+    fun testSortSelected() {
         SelectSorts().test()
     }
 
     @Test
-    fun testSortBubble(){
+    fun testSortBubble() {
         BubbleSorts().test()
     }
 
     @Test
-    fun testInsertSort(){
+    fun testInsertSort() {
         InsertSorts().test()
+    }
+
+
+    val ansList = mutableSetOf<String>()
+
+    val dp = IntArray(5)
+    val n = 33
+    val list = arrayListOf("a", "e", "i", "o", "u")
+
+    // 暴力法
+    fun violence() {
+        dp.fill(1)
+        for (index2 in 1 until n) {
+            for (index in 1..4) {
+                dp[index] += dp[index - 1]
+            }
+        }
+    }
+
+    @Test
+    fun test1109() {
+        violence()
+        println(dp.sum())
     }
 }

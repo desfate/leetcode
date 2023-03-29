@@ -1,9 +1,8 @@
-package com.chengdu.leetcode
+package com.chengdu.leetcode.classify.bisection
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import java.lang.StringBuilder
-import kotlin.math.pow
+import com.chengdu.leetcode.R
 
 class MainActivity29 : AppCompatActivity() {
 

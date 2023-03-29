@@ -1,7 +1,8 @@
-package com.chengdu.leetcode
+package com.chengdu.leetcode.classify.traversal
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.chengdu.leetcode.R
 import kotlin.text.StringBuilder
 
 class MainActivity38 : AppCompatActivity() {
