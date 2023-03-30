@@ -709,4 +709,35 @@ class ExampleUnitTest {
         violence()
         println(dp.sum())
     }
+
+
+    @Test
+    fun test1637(){
+        val point1 = intArrayOf(3, 1)
+        val point2 = intArrayOf(9, 0)
+        val point3 = intArrayOf(1, 0)
+        val point4 = intArrayOf(1, 4)
+        val point5 = intArrayOf(5, 3)
+        val point6 = intArrayOf(8, 8)
+        val points = arrayOf(point1, point2, point3, point4, point5, point6)
+        println(maxWidthOfVerticalArea(points))
+    }
+
+    // 快排后一次循环
+    fun maxWidthOfVerticalArea(points: Array<IntArray>): Int {
+        // 二维变一维
+        val pointX = IntArray(points.size)
+        points.forEachIndexed { index, ints -> pointX[index] = ints[0] }
+
+        pointX.sort() // 数组排序
+
+        //排序后判断最大间隔 一次循环即可
+        var sum = 0
+        pointX.forEachIndexed { index, i ->
+            if (index < pointX.size - 2){
+                sum = max(sum , pointX[index + 1] - pointX[index])
+            }
+        }
+        return sum
+    }
 }
