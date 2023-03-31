@@ -740,4 +740,47 @@ class ExampleUnitTest {
         }
         return sum
     }
+
+
+    @Test
+    fun test2367(){
+        val array = intArrayOf(0,1,4,6,7,10)
+        println( arithmeticTriplets(array, 3) )
+    }
+
+
+    fun arithmeticTriplets(nums: IntArray, diff: Int): Int {
+        // 将数组转换为差值数组
+        val list: ArrayList<Int> = arrayListOf()
+        nums.forEachIndexed { index, i ->
+            if (index >= 0 && index < nums.size - 1) {
+                list.add(nums[index + 1] - i)
+            }
+        }
+
+        // 这个问题key转换成对更小范围的子串求 2 * diff - 当前数的问题
+        var index = list.size - 1
+        while (index > 0) {
+            toDoCal(list, index, 2 * diff, diff, diff)
+            index --
+        }
+
+        return result;
+    }
+    var result = 0
+
+    fun toDoCal(list: ArrayList<Int>, index: Int, value: Int, check: Int, diff: Int){
+        val curr = list[index]
+        if (value - curr < 0 || check - curr < 0) {
+            return
+        }else if(value == curr){
+            println(index.toString() + "   value: 0")
+            result ++
+        }else{
+            if (index > 0){
+                println(index.toString() + "   value: " + (value - curr).toString())
+                toDoCal(list, index - 1, value - curr, if(check - curr == 0){diff}else{check - curr}, diff)
+            }
+        }
+    }
 }

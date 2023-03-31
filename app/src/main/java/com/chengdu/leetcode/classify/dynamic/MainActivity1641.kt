@@ -15,8 +15,6 @@ import kotlin.text.StringBuilder
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 class MainActivity1641 : AppCompatActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,8 +33,6 @@ class MainActivity1641 : AppCompatActivity() {
             violence(ans + list[index], list, index, n)
         }
     }
-
-
     fun dynamic(n: Int) {
         val dp = IntArray(5)
         dp.fill(1)
